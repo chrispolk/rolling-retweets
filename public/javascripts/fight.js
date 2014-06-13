@@ -58,11 +58,8 @@ var TweetBox = React.createClass({
 var TopTenRetweetBox = React.createClass({
     addTweet: function(tweet) {
         var tweets = this.state.data;
-        // here we need to check to see if tweet text is the same as an existing tweet, if so then replace count number
-        // if retweet count is greater than the minimum in the list
 
-        // if tweet text isn't the same
-        var self = this;
+        var self = this;  // here we need to check to see if tweet text is the same as an existing tweet, if so then replace count number
         tweets.forEach(function (element, index, array) {
             if(element.text == tweet.text) {
                 tweets[index].retweeted_status.retweet_count = tweet.retweeted_status.retweet_count;
@@ -71,12 +68,12 @@ var TopTenRetweetBox = React.createClass({
             }
         })
 
-        
+        // if we haven't filled up the top 10 list with retweets or the most recent retweet's retweet count is greater than the current lowest
         if(tweets.length < 10 || tweet.retweeted_status.retweet_count > tweets[tweets.length - 1].retweeted_status.retweet_count) {
             var newTweets = tweets.concat([tweet]);
             newTweets.sort( function (a,b) { return a.retweeted_status.retweet_count - b.retweeted_status.retweet_count } );
 
-            if(newTweets.length > 10) {
+            if(newTweets.length > 10) { // if we go over a top 10 then drop the 
                 newTweets.splice(0, 1);
             }
 
