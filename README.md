@@ -1,24 +1,17 @@
 # Installation
 
-We need Node, npm, bower and MongoDB for this to work. Then in the project directory:
+We need Node, npm and bower for this to work. Then in the project directory:
 
     $ npm install
     $ bower install
 
-Mongodb must be installed and started, otherwise you will get a connection error
-
 # Twitter stream
 
-If you go to http://localhost:3000/fight you will get the Twitter stream
+If you go to http://localhost:3000 to see your top 10 retweets and choose
 
-# Oauth.js for Facebook and Twitter
+# Oauth.js Twitter
 
 var ids = {
-    facebook: {
-        clientID: "",
-        clientSecret: "",
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
     twitter: {
         consumerKey: "",
         consumerSecret: "",
