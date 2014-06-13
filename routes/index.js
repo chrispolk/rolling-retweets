@@ -3,5 +3,5 @@
  */
 
 exports.index = function(req, res) {
-  res.render('index', { title: 'Medisas Retweet Stream' });
+  res.render('index', { title: 'Top 10 Retweets Stream' });
 };

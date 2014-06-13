@@ -7,7 +7,7 @@ We need Node, npm and bower for this to work. Then in the project directory:
 
 # Twitter stream
 
-If you go to http://localhost:3000 to see your top 10 retweets and choose
+If you go to http://localhost:3000 to see the top 10 retweets from the sampled stream
 
 # Oauth.js Twitter
 
