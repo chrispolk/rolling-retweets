@@ -15,9 +15,9 @@ var TweetList = React.createClass({
     });
     return (
       <div>
-          <ul>
-              {tweets}
-          </ul>
+        <ul>
+          {tweets}
+        </ul>
       </div>
     )
   }
