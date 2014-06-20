@@ -10,7 +10,7 @@ var Tweet = React.createClass({
 
 var TweetList = React.createClass({
   render: function() {
-    var tweets = this.props.data.map(function(tweet) {
+    var tweets = this.props.data.slice(0,10).map(function(tweet) {
       return <Tweet text={tweet.text} retweet_count={tweet.retweeted_status.retweet_count} created_at={tweet.retweeted_status.created_at} />;
     });
     return (
@@ -75,6 +75,7 @@ var TopTenRetweetBox = React.createClass({
       {
         tweets.splice(index,1);
         console.log("retweet found to be out of rolling window, now removing!")
+        self.setState({data: tweets});
       }
     })
 
@@ -93,10 +94,10 @@ var TopTenRetweetBox = React.createClass({
       // if we haven't filled up the top 10 list with retweets or the most recent retweet's retweet count is greater than the current lowest
       if(tweets.length < 10 || tweet.retweeted_status.retweet_count > tweets[tweets.length - 1].retweeted_status.retweet_count) {
         var newTweets = tweets.concat([tweet]);
-        newTweets.sort( function (a,b) { return a.retweeted_status.retweet_count - b.retweeted_status.retweet_count } );
+        newTweets.sort( function (a,b) { return b.retweeted_status.retweet_count - a.retweeted_status.retweet_count } );
 
-        if(newTweets.length > 10) { // if we go over a top 10 then drop the 
-          newTweets.splice(0, 1);
+        if(newTweets.length > 20) { // if we go over a top 10 then drop the 
+          newTweets = newTweets.splice(0, 20);
         }
 
         this.setState({data: newTweets});
