@@ -81,7 +81,7 @@ var TopTenRetweetBox = React.createClass({
 
     tweets.forEach(function (element, index, array) {
       if(element.text == tweet.text) {
-          tweets[index].retweeted_status.retweet_count = tweet.retweeted_status.retweet_count;
+          tweets[index].retweeted_status.retweet_count += 1;
           // update the time of the tweet as well so we can later check to see if any of these need to be dropped
           tweets[index].retweeted_status.created_at = tweet.retweeted_status.created_at;
           self.setState({data: tweets});
@@ -93,6 +93,7 @@ var TopTenRetweetBox = React.createClass({
     if(!is_duplicate) {
       // if we haven't filled up the top 10 list with retweets or the most recent retweet's retweet count is greater than the current lowest
       if(tweets.length < 10 || tweet.retweeted_status.retweet_count > tweets[tweets.length - 1].retweeted_status.retweet_count) {
+        tweet.retweeted_status.retweet_count = 1;
         var newTweets = tweets.concat([tweet]);
         newTweets.sort( function (a,b) { return b.retweeted_status.retweet_count - a.retweeted_status.retweet_count } );
 
